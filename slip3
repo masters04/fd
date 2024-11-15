@@ -1,0 +1,47 @@
+Q1. Write an AngularJS script to display list of games stored in an array on click of button using ng-click. And also  Demonstrate ng-init, ng-bind directive of AngularJS.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="C:\angular-1.8.0\angular-1.8.0\angular.js"></script>
+
+</head>
+
+<body ng-app="myApp">
+
+<div ng-controller="myCtrl" >
+    <button ng-click="myFunc()">Display Games</button>
+           <ol>
+             <li ng-repeat="i in game" ng-bind="i"></li>
+           <ol> 
+      
+</div>
+
+<script>
+angular.module('myApp', [])
+.controller('myCtrl', ['$scope', function($scope) {
+    $scope.count = 0;
+    $scope.myFunc = function() {
+        $scope.game=['Cricket','vollyball','Basketball'];       
+    };
+}]);
+</script>
+
+</body>
+</html>
+Q2. find a company with a workforce greater than 30 in the array. used find by id method 
+interface Company {
+  name: string;
+  desc: string;
+  workForce: number;
+}
+
+const companies: Company[] = [
+  { name: "GeeksforGeeks", desc: "A Computer Science Portal.", workForce: 200 },
+  { name: "Company 2", desc: "Description 1", workForce: 30 },
+  { name: "Company 3", desc: "Description 2", workForce: 10 },
+];
+
+const matchedCompany = companies.find(company => company.workForce > 30);
+
+console.log(matchedCompany);
