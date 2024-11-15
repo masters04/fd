@@ -1,0 +1,111 @@
+Slip 12
+Q1Write an AngularJS script to print details of Employee (employee name, employee Id, address etc.) in tabular form using ng-repeat 
+ <!DOCTYPE html> 
+
+<html> 
+<script src= "C:\angular-1.8.0\angular-1.8.0\angular.js"> 
+  </script> 
+<style> 
+    body { 
+        margin: 2%; 
+        font-size: 120%; 
+    }       
+    th, 
+   td { 
+        padding: 20px; 
+    } 
+</style> 
+<body ng-app="myApp" ng-controller="ListController"> 
+    <h1>Bank Details</h1> 
+    <table border=1> 
+        <thead> 
+            <tr> 
+                <th>S.No</th> 
+                <th>Name</th> 
+                <th>Emp Id </th> 
+                <th>Address</th> 
+            </tr> 
+        </thead> 
+        <tr ng-repeat="i in bank"> 
+            <td> {{i.sno}} </td> 
+            <td> {{i.name}} </td> 
+            <td> {{i.micr}} </td> 
+            <td> {{i.ifsc}} </td> 
+            <td> {{i.address}} </td> 
+        </tr> 
+    </table>   
+</body> 
+<script> 
+    var app = angular.module('myApp', []); 
+    app.controller( 
+      'ListController', function($scope) { 
+        $scope.bank = [{ 
+                sno: 1, 
+                name: 'SBI', 
+                micr: 'sbi123',
+                address: "satara", 
+
+            }, { 
+
+                sno: 2, 
+                name: 'BOI', 
+                micr: 'boi123', 
+                address: "Pune", 
+
+            }, { 
+
+                sno: 3, 
+                name: 'RBI', 
+                micr: 'rbi123', 
+                
+                address: "kolhapur", 
+
+            }, { 
+
+                sno: 4, 
+                name: 'BOM', 
+                micr: 'bom123', 
+                address: "goa", 
+
+            }, { 
+
+                sno: 5, 
+                name: 'BOB',          
+               micr: 'bob123', 
+                address: "satara", 
+            } 
+        ]; 
+    }); 
+</script> 
+</html>
+
+Q2 Develop an Express.js application that defines routes for Create operations 
+on a resource (User).
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+// Middleware for parsing JSON bodies
+app.use(bodyParser.json());
+
+// In-memory "database" to store users
+let User = [];
+
+// Create a new user (Create)
+app.post('/ User ', (req, res) => {
+  const { name, actro} = req.body;
+  const newUser = { id: movies.length + 1, name, email };
+  movies.push(newUser);
+  res.status(201).json(newUser);
+});
+
+app.get('/ User ', (req, res) => {
+  res.json(User);
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
