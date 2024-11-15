@@ -1,0 +1,41 @@
+Slip 15
+Q1. find a Emp with a Salary greater than 25000 in the array. used find by id method 
+interface Company {
+  name: string;
+  desc: string;
+  workForce: number;
+}
+
+const companies: Company[] = [
+  { name: "GeeksforGeeks", desc: "A Computer Science Portal.", Salary: 25000 },
+  { name: "Company 2", desc: "Description 1", Salary: 30000 },
+  { name: "Company 3", desc: "Description 2", Salary: 10000 },
+];
+
+const matchedCompany = companies.find(company => company. Salary > 25000);
+
+console.log(matchedCompany);
+
+Q2  Create Angular application that  print the name of students who got 85% using filter and map method
+
+let students = [
+    { id: "001", name: "Anish",Percentage: "40%" },
+    { id: "002", name: "Smriti", Percentage: "25%" },
+    { id: "003", name: "Rahul", Percentage: "85%" },
+    { id: "004", name: "Bakul", Percentage: "96%" },
+    { id: "005", name: "Nikita", Percentage: "90%" }
+]
+
+let basketballPlayers = students.filter(function (student) {
+    return student.Percentage === "85%";
+}).map(function (student) {
+    return student.name;
+})
+
+console.log("Basketball Players are:");
+
+// Printing out the name of Basketball players
+basketballPlayers.forEach(function (players) {
+    console.log(players);
+});
+
