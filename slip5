@@ -1,0 +1,40 @@
+Slip 5
+Q1 Create a simple Angular component that takes input data and displays it.
+
+app.component.ts
+
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  message = 'Dynamic message from parent component';
+}
+app.component.html
+<app-display [data]="message"></app-display>
+display.component.css
+.data-container {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+Q2. Implement a simple server using Node.js
+// Importing the http module
+const http = require("http")
+
+// Creating server 
+const server = http.createServer((req, res) => {
+    // Sending the response
+    res.write("This is the response from the server")
+    res.end();
+})
+
+// Server listening to port 3000
+server.listen((3000), () => {
+    console.log("Server is Running");
+})
