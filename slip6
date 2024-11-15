@@ -1,0 +1,57 @@
+Slip 6
+Q1 Develop an Express.js application that defines routes for Create and Read operations
+on a resource (products).
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+// Middleware for parsing JSON bodies
+app.use(bodyParser.json());
+
+// In-memory "database" to store users
+let users = [];
+
+// Create a new user (Create)
+app.post('/products', (req, res) => {
+  const { name, price} = req.body;
+  const newProducts = { id: users.length + 1, name, email };
+  users.push(newProducts);
+  res.status(201).json(newProducts);
+});
+
+// Read all users (Read)
+app.get('/ products', (req, res) => {
+  res.json(products);
+});
+
+// Read a single user by ID (Read)
+app.get('/ products /:id', (req, res) => {
+  const productsid= parseInt(req.params.id, 10);
+  const product= products.find(u => u.id === products);
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  res.json(user);
+});
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+Q2 find a company with a workforce greater than 30 in the array. used find by id method 
+interface Company {
+  name: string;
+  desc: string;
+  workForce: number;
+}
+
+const companies: Company[] = [
+  { name: "GeeksforGeeks", desc: "A Computer Science Portal.", workForce: 200 },
+  { name: "Company 2", desc: "Description 1", workForce: 30 },
+  { name: "Company 3", desc: "Description 2", workForce: 10 },
+];
+
+const matchedCompany = companies.find(company => company.workForce > 30);
+
+console.log(matchedCompany);
