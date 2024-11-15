@@ -1,0 +1,56 @@
+Slip 11
+Q1 Develop an Express.js application that defines routes for Create operations 
+on a resource (Movie).
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+// Middleware for parsing JSON bodies
+app.use(bodyParser.json());
+
+// In-memory "database" to store users
+let movies= [];
+
+// Create a new user (Create)
+app.post('/ movies ', (req, res) => {
+  const { name, actro} = req.body;
+  const newmovies = { id: movies.length + 1, name, email };
+  movies.push(newmovies);
+  res.status(201).json(newmovies);
+});
+
+app.get('/ movies ', (req, res) => {
+  res.json(movies);
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+
+Q2 Create Angular application that  print the name of students who play basketball using filter and map method
+// Taking an array of Student object
+let students = [
+    { id: "001", name: "Anish", sports: "Cricket" },
+    { id: "002", name: "Smriti", sports: "Basketball" },
+    { id: "003", name: "Rahul", sports: "Cricket" },
+    { id: "004", name: "Bakul", sports: "Basketball" },
+    { id: "005", name: "Nikita", sports: "Hockey" }
+]
+
+let basketballPlayers = students.filter(function (student) {
+    return student.sports === "Basketball";
+}).map(function (student) {
+    return student.name;
+})
+
+console.log("Basketball Players are:");
+
+// Printing out the name of Basketball players
+basketballPlayers.forEach(function (players) {
+    console.log(players);
+});
+
