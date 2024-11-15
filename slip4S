@@ -1,0 +1,106 @@
+Slip 4 
+Q1 fetch the details using ng-repeat in AngularJS 
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<script src= 
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"> 
+	</script> 
+	<title> 
+		Fetching the details using the ng-repeat Directive 
+	</title> 
+	<style> 
+		body { 
+			text-align: center; 
+			font-family: Arial, Helvetica, sans-serif; 
+		} 
+
+		table { 
+			margin-left: auto; 
+			margin-right: auto; 
+		} 
+	</style> 
+</head> 
+
+<body ng-app="myTable"> 
+	<h1 style="color:green">GeeksforGeeks</h1> 
+	<h3> 
+		Fetching the details using the ng-repeat Directive 
+	</h3> 
+
+	<table ng-controller="control" border="2"> 
+		<tr ng-repeat="x in records"> 
+			<td>{{x.Country}}</td> 
+			<td>{{x.Capital}}</td> 
+		</tr> 
+	</table> 
+
+	<script> 
+		var app = angular.module("myTable", []); 
+		app.controller("control", function ($scope) { 
+			$scope.records = [ 
+				{ 
+					"Country": "India", 
+					"Capital": "Delhi" 
+				}, 
+				{ 
+					"Country": "America ", 
+					"Capital": "Washington, D.C. " 
+				}, 
+				{ 
+					"Country": "Germany", 
+					"Capital": "Berlin" 
+				}, 
+				{ 
+					"Country": "Japan", 
+					"Capital": "Tokyo" 
+				} 
+			] 
+		}); 
+	</script> 
+</body> 
+</html>
+Q2. Express.js application to include middleware for parsing request bodies (e.g., JSON, form data) and validating input data
+const express = require('express');
+const bodyParser = require('body-parser');
+const { body, validationResult } = require('express-validator');
+
+const app = express();
+const PORT = 3000;
+
+// Middleware for parsing JSON and form data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Sample route with input validation
+app.post(
+  '/submit',
+  [
+    // Validation checks
+    body('username').isLength({ min: 3 }).withMessage('Username must be at least 3 characters long'),
+    body('email').isEmail().withMessage('Enter a valid email address'),
+    body('age').isInt({ min: 1 }).withMessage('Age must be a positive integer'),
+  ],
+  (req, res) => {
+    // Check validation results
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    // If validation passes, process the request
+    const { username, email, age } = req.body;
+    res.status(200).json({ message: 'Data received successfully', data: { username, email, age } });
+  }
+);
+
+// Default route
+app.get('/', (req, res) => {
+  res.send('Welcome to the Express.js application!');
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
