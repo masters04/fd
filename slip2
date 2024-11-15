@@ -1,0 +1,177 @@
+Q1 Write an AngularJS script to print details of bank (bank name, MICR code, IFC code, address etc.) in tabular form using ng-repeat 
+
+ <!DOCTYPE html> 
+
+<html> 
+<script src= "C:\angular-1.8.0\angular-1.8.0\angular.js"> 
+  </script> 
+<style> 
+    body { 
+        margin: 2%; 
+        font-size: 120%; 
+    }       
+    th, 
+   td { 
+        padding: 20px; 
+    } 
+</style> 
+<body ng-app="myApp" ng-controller="ListController"> 
+    <h1>Bank Details</h1> 
+    <table border=1> 
+        <thead> 
+            <tr> 
+                <th>S.No</th> 
+                <th>Name</th> 
+                <th>MICR Code</th> 
+                <th>IFSC Code</th> 
+                <th>Address</th> 
+            </tr> 
+        </thead> 
+        <tr ng-repeat="i in bank"> 
+            <td> {{i.sno}} </td> 
+            <td> {{i.name}} </td> 
+            <td> {{i.micr}} </td> 
+            <td> {{i.ifsc}} </td> 
+            <td> {{i.address}} </td> 
+        </tr> 
+    </table>   
+</body> 
+<script> 
+    var app = angular.module('myApp', []); 
+    app.controller( 
+      'ListController', function($scope) { 
+        $scope.bank = [{ 
+                sno: 1, 
+                name: 'SBI', 
+                micr: 'sbi123', 
+                ifsc: 9876563454, 
+                address: "satara", 
+
+            }, { 
+
+                sno: 2, 
+                name: 'BOI', 
+                micr: 'boi123', 
+                ifsc: 7865452396, 
+                address: "Pune", 
+
+            }, { 
+
+                sno: 3, 
+                name: 'RBI', 
+                micr: 'rbi123', 
+                ifsc: 7865452316, 
+                address: "kolhapur", 
+
+            }, { 
+
+                sno: 4, 
+                name: 'BOM', 
+                micr: 'bom123', 
+                ifsc: 7765458921, 
+                address: "goa", 
+
+            }, { 
+
+                sno: 5, 
+                name: 'BOB',          
+               micr: 'bob123', 
+                ifsc: 7765458921, 
+                address: "satara", 
+            } 
+        ]; 
+    }); 
+</script> 
+</html>
+Q2 Create a simple Angular application that fetches data from an API using HttpClient.
+- Implement an Observable to fetch data from an API endpoint.
+
+app.module.ts:  
+import { BrowserModule } 
+	from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } 
+	from '@angular/common/http';
+import { AppRoutingModule }
+	from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AddInputComponent }
+	from './add-input/add-input.component';
+import { ShowApiComponent }
+	from './show-api/show-api.component';
+
+@NgModule({
+	declarations: [
+		AppComponent,
+		ShowApiComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		HttpClientModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
+})
+export class AppModule { }
+app.component.ts:
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+@Component({
+	selector: 'app-show-api',
+	templateUrl: './show-api.component.html',
+	styleUrls: ['./show-api.component.css']
+})
+export class ShowApiComponent implements OnInit {
+	li: any;
+	lis = [];
+	constructor(private http: HttpClient) {
+
+	}
+	ngOnInit(): void {
+		this.http.get(
+			'http://...com')
+			.subscribe(Response =& gt; {
+
+			// If response comes hideloader() function is called
+			// to hide that loader 
+			if (Response) {
+				hideloader();
+			}
+			console.log(Response)
+			this.li = Response;
+			this.lis = this.li.list;
+		});
+		function hideloader() {
+			document.getElementById('loading').style.display = 'none';
+		}
+	}
+}
+app.component.html:
+<h1>Registered Employees</h1>
+<div class="d-flex justify-content-center">
+	<div class="spinner-border" role="status">
+		<span class="sr-only" id="loading">
+			Loading...
+		</span>
+	</div>
+</div>
+
+<table class="table" id='tab'>
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Position</th>
+			<th scope="col">Office</th>
+			<th scope="col">Salary</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let e of lis;">
+			<td>{{ e.name }}</td>
+			<td>{{ e.position }}</td>
+			<td>{{ e.office }}</td>
+			<td>{{ e.salary }}</td>
+		</tr>
+	</tbody>
+</table>
