@@ -1,0 +1,44 @@
+Q1 Write an AngularJS script for addition of two numbers using ng-init, ng-model & ng-bind. And also Demonstrate ng-show, ng-disabled, ng-click directives on button component.
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="C:\angular-1.8.0\angular-1.8.0\angular.js"></script>
+</head>
+<body  ng-app ng-init="checked=true;check=true" >
+
+  Enter number1: <input type="number" ng-model="n1"><br/>
+  <br/>
+  Enter number2:<input type="number" ng-model="n2">
+  <br/><br/>
+  <button ng-click="add=(n1+n2)" ng-init="add=0">result </button><br/><br/>
+   addition of two numbers= 
+  <span ng-bind="add"></span><br/><br/>
+  <label>Click me to make button disabled or enabled: <input type="checkbox" ng-model="checked"></label>
+  <button  ng-disabled="checked" >Disable</button><br/><br/>
+  <label>Click me to  show or hide button: <input type="checkbox" ng-model="check"></label> 
+  <button   ng-show="check">Show</button><br/>
+
+</body>
+</html>
+Q2 Create a Node.js application that reads data from multiple files asynchronously using
+promises and async/await.
+const fs = require('fs');
+
+const readFilePromise = (fileName, encoding) => {
+    return new Promise((resolve, reject) => {
+        fs.readFile(fileName, encoding, (err, data) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(data);
+        });
+    });
+}
+
+readFilePromise('./input.txt', 'utf8')
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err => {
+        console.log(err);
+    });
